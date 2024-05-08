@@ -68,6 +68,7 @@
   go to the directory (Desktop/To-Do-main/To-Do-main/todoproject) where manage.py file is present
 
   run the following command in the terminal to get the test results 
+  
   python manage.py test
   
   
