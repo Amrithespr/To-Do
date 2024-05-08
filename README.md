@@ -13,7 +13,7 @@
   
   open views.py inside todoapp (Desktop/To-Do-main/To-Do-main/todoproject)
 
-  ## on scrolling down you can see, the following code
+  ## on scrolling down you can see, the following code in viewa.py
 
   //Save the markdown content locally
   
