@@ -64,5 +64,9 @@
 
    Before that make sure you have successfully completed the setup instructions
 
+# How to Test the project
+  go to the directory (Desktop/To-Do-main/To-Do-main/todoproject) where manage.py file is present
+
+  run the command   python manage.py test    in the terminal to get the test results 
   
   
