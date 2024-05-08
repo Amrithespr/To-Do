@@ -10,6 +10,7 @@
   Install Django (pip install Django)
 
   open the project folder in any ide (eg. visual studio code)
+  
   open views.py inside todoapp (Desktop/To-Do-main/To-Do-main/todoproject)
 
   # on scrolling down you can see, the following code
