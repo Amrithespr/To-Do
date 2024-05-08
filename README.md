@@ -18,9 +18,8 @@
   //Save the markdown content locally
   
   file_name = f"{project.title}.md"
+  
   file_path = os.path.join("ENTER PATH OF FOLDER", file_name)  # Specify the directory where you want to save the markdown file
-  with open(file_path, 'w') as file:
-      file.write(markdown_content)
 
   # change ENTER PATH OF FOLDER , with the directory where you want to save the markdown file in your local system
 
