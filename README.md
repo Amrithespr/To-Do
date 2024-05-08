@@ -13,7 +13,7 @@
   
   open views.py inside todoapp (Desktop/To-Do-main/To-Do-main/todoproject)
 
-  #3 on scrolling down you can see, the following code
+  ## on scrolling down you can see, the following code
 
   //Save the markdown content locally
   
@@ -21,9 +21,9 @@
   
   file_path = os.path.join("ENTER PATH OF FOLDER", file_name)  # Specify the directory where you want to save the markdown file
 
-  #3 change ENTER PATH OF FOLDER , with the directory where you want to save the markdown file in your local system
+  ## change ENTER PATH OF FOLDER , with the directory where you want to save the markdown file in your local system
 
-  #3 just below that you can see,
+  ## just below that you can see,
 
   //Create a secret gist using GitHub API
   
