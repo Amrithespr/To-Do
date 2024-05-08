@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+                    <h1 style="font-size: 100px"><b>To-Do </b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Register</h2>
+            <form method="POST" class="p-3 shadow">
+                {% csrf_token %} {% for msg in messages %} {% if message.tags !=
+                'success' %} {% if message.tags != 'info' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ msg }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %} {% endif %} {% endfor %}
+
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Email" required="" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="" />
+                </div>
+                <br />
+                <button type="submit" class="btn btn-success">Submit</button>
+                <br /><br />
+                <p>Already Registered? &nbsp; <a href="login/">Login</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript and dependencies -->
+<script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-D3h3E5OHgQgkUXa4dndQc2Z1/DKGzYUz08iJCy0p2+N5U/BO+THTsy5gir2mHs2Y"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"
+    integrity="sha384-xRfMwaagIkozPVrBb5bVmEZpZ8pGf0wo/hFku+8xOWH8O6xb6QRHzc4vU81Dkq12"
+    crossorigin="anonymous"></script>
+
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+                    <h1 style="font-size:100px;"><b>To-Do </b></h1>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row justify-content-end">
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <a href="/addproject/{{request.user.id}}">
+                                <h5 style="font-size: 20px;" class="me-3">Home</h5></a>
+                            <a href="/logout" class="me-3">
+                                <h1 style="font-size:20px;">Logout</h1> </a>
+                            <h6 style="font-size:20px;">{{ user.username }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <h1 style="display: inline-block;" contenteditable="true">{{ project.title }}</h1>
+                <a style="position: relative;" class="" href="{% url 'todoapp:updateprojectheading' project.id %}">
+                    <i class="fas fa-edit" style="display: inline-block;"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+            <br><br><br>
+
+            {% if tasks %}
+            {%else%}
+            You haven't created any task yet
+            {% endif %}<br><br>
+            <h3>Create New Task</h3>
+            <form method="POST" class="p-3 shadow" action="{% url 'todoapp:add' project.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="description" placeholder="Task description"
+                        required="">
+                </div><br>
+                <div class="form-group">
+                    <label>
+                        <h5>Status</h5>
+                    </label>
+                    <input type="checkbox" name="status" placeholder="status" {% if task.status %}checked{% endif %}>
+                    <span class="checkmark"></span>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success">Add Task</button>
+            </form>
+            <br><br>
+        </div>
+
+        <!-- <div class="col-md-6"> -->
+        <div class="row">
+            <div class="col-md-6">
+
+                {% for task in tasks %}
+                {% if task.status %}
+                <h4>Completed Tasks</h4>
+                <div class="shadow card">
+                    <div class="card-body">
+                        <h2 class="card-title"><b>{{ task.description }}</b></h2>
+                        <p>Created: {{ task.created_date }}</p>
+                        <p>Last Updated: {{ task.updated_date }}</p>
+                        <span class="custom-checkbox">&#10004;</span> completed
+                        <br><br>
+                        <div class="btn-group" role="group" aria-label="Task actions">
+                            <a class="btn btn-danger" href="{% url 'todoapp:delete' task.id %}">Delete</a>&nbsp;&nbsp;
+                            <a class="btn btn-warning" href="{% url 'todoapp:update' task.id %}">Update</a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+
+                {% for task in tasks %}
+                {% if not task.status %}
+                <h4>Pending Tasks</h4>
+                <div class="shadow card">
+                    <div class="card-body">
+                        <h2 class="card-title"><b>{{ task.description }}</b></h2>
+                        <p>Created: {{ task.created_date }}</p>
+                        <p>Last Updated: {{ task.updated_date }}</p>
+                        <span class="custom-checkbox"></span> not completed
+                        <br><br>
+                        <div class="btn-group" role="group" aria-label="Task actions">
+                            <a class="btn btn-danger" href="{% url 'todoapp:delete' task.id %}">Delete</a>&nbsp;&nbsp;
+                            <a class="btn btn-warning" href="{% url 'todoapp:update' task.id %}">Update</a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<style>
+    /* Style the custom checkbox */
+    .custom-checkbox {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: #f8f9fb;
+        border-radius: 3px;
+        border: 1px solid #050709;
+    }
+
+    /* Hide the default checkbox */
+    .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* Create the checkmark */
+    /* .checkmark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #28a745; /* Green color */
+    /* display: none;
+    } 
+     */
+    .checkmark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 12px;
+        /* Adjust thickness */
+        height: 12px;
+        /* Adjust thickness */
+        border-radius: 50%;
+        background-color: #007bff;
+        /* Blue color */
+        display: none;
+        border: 2px solid #007bff;
+        /* Blue border */
+    }
+
+    /* Show the checkmark when the checkbox is checked */
+    .custom-checkbox input:checked~.checkmark {
+        display: block;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+                    <h1 style="font-size: 100px"><b>To-Do </b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Login</h2>
+            <form method="POST" class="p-3 shadow">
+                {% csrf_token %} {% for msg in messages %} {% if message.tags !=
+                'success' %} {% if message.tags != 'info' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ msg }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %} {% endif %} {% endfor %}
+
+                <div class="form-group">
+                    <h6><label>Username</label></h6>
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="" />
+                </div>
+                <div class="form-group">
+                    <h6><label>Password</label></h6>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="" />
+                </div>
+
+                <br />
+                <button type="submit" class="btn btn-success">Submit</button>
+                <br /><br />
+                <p>Not a registered member? &nbsp; <a href="/">Register here</a></p>
+            </form>
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+
+{% endblock %}

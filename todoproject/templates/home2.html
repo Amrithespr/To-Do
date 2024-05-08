@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+                    <h1 style="font-size:100px;"><b>To-Do </b></h1>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-2">       
+            </div>
+        </div>
+                <div class="container-fluid">
+                    <div class="row justify-content-end">
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-end align-items-center">
+                                <a href="/logout" class="me-3">
+                                    <h1 style="font-size:20px;">Logout</h1>
+                                </a>
+                                <h6 style="font-size:20px;">{{ user.username }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {% if projects %}
+        {%else%}
+        You haven't created any project yet
+        {% endif %}<br><br>
+
+            <h3>Create New Project</h3>
+            
+            <form method="POST" class="p-3 shadow">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="name" placeholder="Project name" required="">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>              
+            <br> <br>
+        </div>
+        <div class="col-md-6"><br><br><br>
+            {% if projects %}
+            <h5 style="color: green;"> Projects Created</h4>
+            {% endif %}
+            {% for project in projects %}
+            <div class="shadow card">
+                <div class="card-body">
+                    <h2 class="card-title"><b>{{ project.title }}</b></h2>
+                    <p>{{ project.created_date }}</p>
+                    <a class="btn btn-danger" href="{% url 'todoapp:deleteproject' project.id %}">Delete</a> 
+                    &nbsp;
+
+                   <a class="btn btn-secondary" href="{% url 'todoapp:updateproject' project.id %}">Update</a> 
+
+
+                   &nbsp;
+                   
+                    <a href="{% url 'todoapp:add' project.id %}" class="btn btn-warning">View Tasks</a>
+          <br></br> <br>
+                    &nbsp;
+                    
+                    <a href="{% url 'todoapp:export_summary' project.id %}" class="btn btn-primary mx-auto"  ><h5>Export Summary as Gist</h5></a>
+                
+          <br></br> <br>
+                  <h4>Summary: <span style="font-size: 20px;">{{ project.completed_tasks_count }}/{{ project.total_tasks_count }} todos completed</span> </h4>
+                  
+                  
+                  <!-- <h3>{{ project.title }}</h3>
+                  <p>Total Tasks: {{ project.total_tasks_count }}</p>
+                  <p>Completed Tasks: {{ project.completed_tasks_count }}</p> -->
+            
+
+                    <!-- Display Pending Tasks -->
+                    <h4 style="color: rgb(253, 36, 36);">Pending:</h4>
+                    <ul>
+                        {% for task in project.todos.all %}
+                        {% if not task.status %}
+                        <li>
+                            <input type="checkbox" disabled>
+                            {{ task.description }}
+
+                        </li>
+                        {% endif %}
+                        
+                        {% endfor %}
+                    </ul>
+                    
+                    <!-- Display Completed Tasks -->
+                    <h4 style="color: rgba(5, 124, 5, 0.645);">Completed:</h4>
+                    <ul>
+                        {% for task in project.todos.all %}
+                        {% if task.status %}
+                        <li >     
+                            <!-- <input type="checkbox" checked disabled  > -->
+                            <span class="custom-checkbox">&#10004;</span>
+                            {{ task.description }}  
+                        </li>
+                        
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+<style>
+    /* Style the custom checkbox */
+    .custom-checkbox {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: #f8f9fb;
+        border-radius: 3px;
+        border: 1px solid #050709;
+    }
+
+    /* Hide the default checkbox */
+    .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* Create the checkmark */
+    /* .checkmark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #28a745; /* Green color */
+        /* display: none;
+    } 
+     */
+    .checkmark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px; /* Adjust thickness */
+    height: 12px; /* Adjust thickness */
+    border-radius: 50%;
+    background-color: #007bff; /* Blue color */
+    display: none;
+    border: 2px solid #007bff; /* Blue border */
+}
+
+    /* Show the checkmark when the checkbox is checked */
+    .custom-checkbox input:checked ~ .checkmark {
+        display: block;
+    }
+
+
+    .custom-button {
+        background-color:blueviolet;
+        color:rgb(22, 4, 4); /* Text color */
+        /* Add any other styles you want */
+    }
+</style>
+

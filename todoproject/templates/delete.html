@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--<div style="margin:200px;">-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" banner ">
+                <div class="banner-text ">
+                    <h1 style="font-size:100px;"><b>To-Do </b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="shadow card">
+        <div class="card-body">
+            <h2 style="color:red;" class="card-title"><b> Delete</b></h2>
+            <form method="POST">
+                {% csrf_token %}
+                <h2>Are you sure this task is done? </h2>
+                <input type="hidden" name="id" value="{{ i.id }}">
+                <input type="submit" class="btn btn-danger" value="Yes">
+                &nbsp; <a href="javascript:history.go(-1)" class="btn btn-warning">No</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

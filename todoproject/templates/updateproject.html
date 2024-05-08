@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--<div style="margin:200px;">-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" banner ">
+                <div class="banner-text ">
+                    <h1 style="font-size:100px;"><b>To-Do </b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="shadow card">
+        <div class="card-body">
+            <h2 style="color:rgb(18, 108, 234);" class="card-title"><b> Edit Project Name</b></h2> <br>
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-success">Confirm</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
