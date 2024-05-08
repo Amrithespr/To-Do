@@ -1,6 +1,6 @@
-## To-Do
+# To-Do
 
-# Setup
+## Setup
 
   Download the zip file and extract it to the Desktop.
   
@@ -13,7 +13,7 @@
   
   open views.py inside todoapp (Desktop/To-Do-main/To-Do-main/todoproject)
 
-  # on scrolling down you can see, the following code
+  #3 on scrolling down you can see, the following code
 
   //Save the markdown content locally
   
@@ -21,17 +21,17 @@
   
   file_path = os.path.join("ENTER PATH OF FOLDER", file_name)  # Specify the directory where you want to save the markdown file
 
-  # change ENTER PATH OF FOLDER , with the directory where you want to save the markdown file in your local system
+  #3 change ENTER PATH OF FOLDER , with the directory where you want to save the markdown file in your local system
 
-  # just below that you can see,
+  #3 just below that you can see,
 
   //Create a secret gist using GitHub API
   
   github_token = "YOUR GITHUB PERSONAL ACCESS TOKEN"  #  Replace with your github personal access token
    
-  # change YOUR GITHUB PERSONAL ACCESS TOKEN , with  your GitHub personal access token. 
+  ## change YOUR GITHUB PERSONAL ACCESS TOKEN , with  your GitHub personal access token. 
   
-  # GitHub personal access token can be accessed by
+  ## GitHub personal access token can be accessed by
   go to github settings, go to developer settings, go to personal access tokens, click on Tokens (classic),
   click on generate new token, select generate new token (classic)
 
@@ -39,7 +39,7 @@
   Make sure to copy your personal access token now. You won’t be able to see it again!
   
 
-# How to Run the project
+## How to Run the project
 
   Enter the following command in the terminal after correctly specifying the project directory (Desktop/To-Do-main/To-Do-main/todoproject).
     python manage.py runserver
@@ -64,7 +64,7 @@
 
    Before that make sure you have successfully completed the setup instructions
 
-# How to Test the project
+## How to Test the project
   go to the directory (Desktop/To-Do-main/To-Do-main/todoproject) where manage.py file is present
 
   run the following command in the terminal to get the test results 
